@@ -1,0 +1,725 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APIs For Thrift Store",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/authors": {
+            "get": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Получить список всех авторов с книгами",
+                "operationId": "c66389cfbe7eecf32fad2f1b1af8da7b",
+                "responses": {
+                    "200": {
+                        "description": "Список авторов с книгами",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Добавить нового автора",
+                "operationId": "1ccb37eb2efc8b9e14d7632d1de576ac",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Имя автора",
+                                        "type": "string",
+                                        "example": "Иван Тургенев"
+                                    },
+                                    "bio": {
+                                        "description": "Биография автора",
+                                        "type": "string",
+                                        "example": "Русский писатель и драматург."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Автор успешно добавлен",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/api/v1/authors/{id}": {
+            "get": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Получить информацию об авторе",
+                "operationId": "fa6937c010a766599466bc0fbe65dad4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID автора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация об авторе",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Автор не найден"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Обновить информацию о авторе",
+                "operationId": "5caa5b324f5c5ec2716297cb69e1d868",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID автора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Имя автора",
+                                        "type": "string",
+                                        "example": "Иван Тургенев"
+                                    },
+                                    "bio": {
+                                        "description": "Биография автора",
+                                        "type": "string",
+                                        "example": "Русский писатель и драматург."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Автор успешно обновлен",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Authors"
+                ],
+                "summary": "Удалить автора",
+                "operationId": "80da65b3b24823d566c9fa5d26f545bb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID автора",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Автор удален"
+                    },
+                    "404": {
+                        "description": "Автор не найден"
+                    }
+                }
+            }
+        },
+        "/api/v1/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Получить список всех книг с авторами",
+                "operationId": "8e67fc126a51598255c56d362d50466e",
+                "responses": {
+                    "200": {
+                        "description": "Список книг с авторами",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Добавить новую книгу",
+                "operationId": "6c5e00fe01c5e356fa95e728c3cfbc98",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "author_id",
+                                    "published_at"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Название книги",
+                                        "type": "string",
+                                        "example": "Мастер и Маргарита"
+                                    },
+                                    "author_id": {
+                                        "description": "ID автора",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "published_at": {
+                                        "description": "Дата публикации",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Книга успешно добавлена",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/api/v1/books/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Получить информацию о книге",
+                "operationId": "22b313962ebfb68fe2f323a96dc9e91e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID книги",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о книге",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Книга не найдена"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Обновить информацию о книге",
+                "operationId": "471e8ddd754c8f9e34e69f64d1b53eaa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID книги",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "author_id",
+                                    "published_at"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Название книги",
+                                        "type": "string",
+                                        "example": "Мастер и Маргарита"
+                                    },
+                                    "author_id": {
+                                        "description": "ID автора",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "published_at": {
+                                        "description": "Дата публикации",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-01-01"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Книга успешно обновлена",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Удалить книгу",
+                "operationId": "e3e33d11e322f13055b10ead759d294c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID книги",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Книга удалена"
+                    },
+                    "404": {
+                        "description": "Книга не найдена"
+                    }
+                }
+            }
+        },
+        "/api/v1/rentals": {
+            "get": {
+                "tags": [
+                    "Rentals"
+                ],
+                "summary": "Получить список всех аренд с деталями",
+                "operationId": "382835f5699168d4b5d17d0a0c757983",
+                "responses": {
+                    "200": {
+                        "description": "Список всех аренд с деталями",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Rentals"
+                ],
+                "summary": "Арендовать книгу",
+                "operationId": "3d628a83ca3877f6aa0af558203cc6d6",
+                "requestBody": {
+                    "description": "Данные для аренды книги",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "book_id",
+                                    "user_id",
+                                    "rented_at",
+                                    "due_date"
+                                ],
+                                "properties": {
+                                    "book_id": {
+                                        "description": "ID книги",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "user_id": {
+                                        "description": "ID пользователя",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "rented_at": {
+                                        "description": "Дата аренды книги",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-11-09 14:30:00"
+                                    },
+                                    "due_date": {
+                                        "description": "Дата сдачи",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-12-09 12:30:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Книга успешно арендована",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "500": {
+                        "description": "Ошибка при аренде книги"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/api/v1/rentals/{id}/return": {
+            "post": {
+                "tags": [
+                    "Rentals"
+                ],
+                "summary": "Возвратить книгу",
+                "operationId": "12f449d6a62d839106f6703c16101c07",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID аренды",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Книга успешно возвращена",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Аренда не найдена"
+                    },
+                    "500": {
+                        "description": "Ошибка при возврате книги"
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Получить список всех пользователей",
+                "operationId": "3ab81e3f9b24b4f36ab08d72349ac632",
+                "responses": {
+                    "200": {
+                        "description": "Список пользователей",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Добавить нового пользователя",
+                "operationId": "ba548b97148bb5c0d8cab3bc3f128bfd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Имя пользователя",
+                                        "type": "string",
+                                        "example": "Иван Иванов"
+                                    },
+                                    "email": {
+                                        "description": "Электронная почта пользователя",
+                                        "type": "string",
+                                        "example": "ivan@example.com"
+                                    },
+                                    "password": {
+                                        "description": "Пароль пользователя",
+                                        "type": "string",
+                                        "example": "strong_password_123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Пользователь успешно добавлен",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Просмотр конкретного пользователя",
+                "operationId": "daaf7a6169ee9348c3fddb07778598ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о пользователе",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Пользователь не найден"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Обновить информацию о пользователе",
+                "operationId": "59e98fba99e974815e27979dd58e2175",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Имя пользователя",
+                                        "type": "string",
+                                        "example": "Иван Иванов"
+                                    },
+                                    "email": {
+                                        "description": "Электронная почта пользователя",
+                                        "type": "string",
+                                        "example": "ivan@example.com"
+                                    },
+                                    "password": {
+                                        "description": "Пароль пользователя",
+                                        "type": "string",
+                                        "example": "new_password_456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пользователь успешно обновлен",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные данные запроса"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Удалить пользователя",
+                "operationId": "c30c64b8b7730b65c7714c9af4a6f5fa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID пользователя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Пользователь удален"
+                    },
+                    "404": {
+                        "description": "Пользователь не найден"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authors",
+            "description": "Authors"
+        },
+        {
+            "name": "Books",
+            "description": "Books"
+        },
+        {
+            "name": "Rentals",
+            "description": "Rentals"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
+}
