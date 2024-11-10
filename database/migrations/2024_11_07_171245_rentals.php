@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->timestamp('rented_at');
-            $table->timestamp('due_date');
+            $table->datetime('rented_at');
+            $table->datetime('due_date');
             $table->date('returned_at')->nullable();
             $table->timestamps();
         });
