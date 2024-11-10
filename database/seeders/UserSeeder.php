@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        \App\Models\User::create([
+        User::create([
             'name' => 'Александр Иванов',
             'email' => 'alexander@example.com',
 
@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
 
         ]);
 
-        \App\Models\User::create([
+        User::create([
             'name' => 'Мария Смирнова',
             'email' => 'maria@example.com',
 
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
 
         ]);
 
-        \App\Models\User::create([
+        User::create([
             'name' => 'Дмитрий Орлов',
             'email' => 'dmitry@example.com',
 
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
 
         ]);
 
-        \App\Models\User::create([
+        User::create([
             'name' => 'Елена Кузнецова',
             'email' => 'elena@example.com',
 
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
         ]);
 
-        \App\Models\User::create([
+        User::create([
             'name' => 'Иван Петров',
             'email' => 'ivan@example.com',
             'password' => bcrypt('password123'),
