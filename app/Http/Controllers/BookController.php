@@ -36,7 +36,7 @@ class BookController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"title", "author_id", "published_at"},
+     *             required={"title", "author_id"},
      *             @OA\Property(property="title", type="string", description="Название книги", example="Мастер и Маргарита"),
      *             @OA\Property(property="author_id", type="integer", description="ID автора", example=1),
      *
@@ -106,7 +106,7 @@ class BookController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"title", "author_id", "published_at"},
+     *
      *             @OA\Property(property="title", type="string", description="Название книги", example="Мастер и Маргарита"),
      *             @OA\Property(property="author_id", type="integer", description="ID автора", example=1),
      *

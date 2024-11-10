@@ -71,7 +71,7 @@ class UserController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"name", "email"},
+     *             required={"name", "email", "password"},
      *             @OA\Property(property="name", type="string", description="Имя пользователя", example="Иван Иванов"),
      *             @OA\Property(property="email", type="string", description="Электронная почта пользователя", example="ivan@example.com"),
      *             @OA\Property(property="password", type="string", description="Пароль пользователя", example="strong_password_123"),
@@ -109,7 +109,7 @@ class UserController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"name", "email"},
+     *
      *             @OA\Property(property="name", type="string", description="Имя пользователя", example="Иван Иванов"),
      *             @OA\Property(property="email", type="string", description="Электронная почта пользователя", example="ivan@example.com"),
      *             @OA\Property(property="password", type="string", description="Пароль пользователя", example="new_password_456"),

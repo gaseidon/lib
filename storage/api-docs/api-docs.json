@@ -36,7 +36,8 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "name"
+                                    "name",
+                                    "bio"
                                 ],
                                 "properties": {
                                     "name": {
@@ -123,9 +124,6 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "name"
-                                ],
                                 "properties": {
                                     "name": {
                                         "description": "Имя автора",
@@ -220,8 +218,7 @@
                             "schema": {
                                 "required": [
                                     "title",
-                                    "author_id",
-                                    "published_at"
+                                    "author_id"
                                 ],
                                 "properties": {
                                     "title": {
@@ -314,11 +311,6 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "title",
-                                    "author_id",
-                                    "published_at"
-                                ],
                                 "properties": {
                                     "title": {
                                         "description": "Название книги",
@@ -538,7 +530,8 @@
                             "schema": {
                                 "required": [
                                     "name",
-                                    "email"
+                                    "email",
+                                    "password"
                                 ],
                                 "properties": {
                                     "name": {
@@ -630,10 +623,6 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "name",
-                                    "email"
-                                ],
                                 "properties": {
                                     "name": {
                                         "description": "Имя пользователя",

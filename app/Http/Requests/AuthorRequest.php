@@ -8,22 +8,37 @@ class AuthorRequest extends FormRequest
 {
     public function rules()
     {
+        // Определяем, является ли метод POST для добавления
+        $isCreating = $this->isMethod('post');
+
         return [
-            'name' => 'nullable|string|max:255',
-            'bio' => 'nullable|string|min:3|max:255',
+            'name' => [
+                $isCreating ? 'required' : 'nullable',
+                'string',
+                'max:255',
+            ],
+            'bio' => [
+                $isCreating ? 'required' : 'nullable',
+                'string',
+                'min:3',
+                'max:255',
+            ],
         ];
     }
 
     public function messages()
     {
         return [
+            'name.required' => 'Имя обязательно для заполнения.',
             'name.string' => 'Имя должно быть строкой.',
+            'bio.required' => 'Биография обязательна для заполнения.',
             'bio.string' => 'Биография должна быть строкой.',
             'bio.min' => 'Биография должна содержать минимум 3 символа.',
+            'bio.max' => 'Биография не должна превышать 255 символов.',
         ];
     }
 
-    public function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {
         throw new \Illuminate\Http\Exceptions\HttpResponseException(
             response()->json([
@@ -33,4 +48,3 @@ class AuthorRequest extends FormRequest
         );
     }
 }
-

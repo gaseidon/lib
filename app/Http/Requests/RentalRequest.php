@@ -24,9 +24,9 @@ class RentalRequest extends FormRequest
     public function rules()
     {
         return [
-            'book_id' => 'exists:books,id',  // Книга должна существовать в базе данных
-            'user_id' => 'exists:users,id',  // Пользователь должен существовать в базе данных
-            'rented_at' => 'date',  // Дата аренды должна быть корректной
+            'book_id' => 'required|exists:books,id',  // Книга должна существовать в базе данных
+            'user_id' => 'required|exists:users,id',  // Пользователь должен существовать в базе данных
+            'rented_at' => 'required|date',  // Дата аренды должна быть корректной
             'due_date' => 'date|after_or_equal:rented_at',  // Дата возврата должна быть позже или равна дате аренды
         ];
     }
@@ -40,9 +40,13 @@ class RentalRequest extends FormRequest
     {
         return [
             'book_id.exists' => 'Указанная книга не существует.',
+            'book_id.required' => 'Айди книги должен быть указан.',
             'user_id.exists' => 'Указанный пользователь не существует.',
+            'book_id.required' => 'Айди пользователя должен быть указан.',
             'rented_at.date' => 'Дата аренды должна быть в правильном формате.',
+            'book_id.required' => 'Дата аренды должна быть указана.',
             'due_date.date' => 'Дата возврата должна быть в правильном формате.',
+            'due_date.date' => 'Дата возврата должна быть указана.',
             'due_date.after_or_equal' => 'Дата возврата не может быть раньше даты аренды.',
         ];
     }
