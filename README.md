@@ -2,3 +2,4 @@
 2. есть сидеры, запускать в таком порядке author->book->user->rental
 3. swagger по адресу /api/documentation
 4. docker-compose также в корне проекта
+5. /test-reminder-job - роут для ручного вызова очередей
