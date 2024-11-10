@@ -118,14 +118,19 @@ class AuthorController extends Controller
      *         ),
      *     ),
      *     @OA\Response(response=400, description="Неверные данные запроса"),
-     *     @OA\Response(response=422, description="Ошибка валидации")
+     *     @OA\Response(response=422, description="Ошибка валидации"),
+     *     @OA\Response(response=404, description="Автор не найден")
      * )
      */
     public function update(AuthorRequest $request, $id)
     {
+        try {
         $author = Author::findOrFail($id);
         $updatedAuthor = $author->updateAuthor($request->validated());
         return response()->json($updatedAuthor, 200);
+    } catch (ModelNotFoundException $e) {
+        return response()->json(['message' => 'Author not found'], 404);
+    }
     }
 
     /**
@@ -152,6 +157,7 @@ class AuthorController extends Controller
     {
         try {
             $author = Author::findOrFail($id);
+
             $author->deleteAuthor();
             return response()->json(null, 204);
         } catch (ModelNotFoundException $e) {

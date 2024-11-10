@@ -24,8 +24,8 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255',
-            'author_id' => 'required|exists:authors,id',
+            'title' => 'string|max:255',
+            'author_id' => 'exists:authors,id',
             'published_at' => 'nullable|date'
         ];
     }
@@ -38,9 +38,7 @@ class BookRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Название книги обязательно.',
             'title.string' => 'Название должно быть строкой.',
-            'author_id.required' => 'Автор обязателен.',
             'author_id.exists' => 'Указанный автор не существует.',
             'published_at.date' => 'Дата публикации должна быть в правильном формате.'
         ];

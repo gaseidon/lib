@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
@@ -53,11 +54,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
+    try{
+        $user = User::findOrFail($id);
+
         return response()->json($user);
+               } catch (ModelNotFoundException $e) {
+        return response()->json(['error' => 'Пользователь не найден.'], 404);
+    }
     }
 
     /**
@@ -120,18 +123,21 @@ class UserController extends Controller
      *         ),
      *     ),
      *     @OA\Response(response=400, description="Неверные данные запроса"),
-     *      @OA\Response(response=422, description="Ошибка валидации")
+     *      @OA\Response(response=422, description="Ошибка валидации"),
+     *      @OA\Response(response=404, description="Пользователь не найден")
      * )
      */
     public function update(UserRequest $request, $id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
+        try{
+        $user = User::findOrFail($id);
+
 
         $user->updateUser($request->validated());
         return response()->json($user);
+    } catch (ModelNotFoundException $e) {
+        return response()->json(['error' => 'Пользователь не найден.'], 404);
+    }
     }
 
     /**
@@ -155,12 +161,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
+     try{
+        $user = User::findOrFail($id);
+
 
         $user->deleteUser();
         return response()->json(['message' => 'User deleted successfully'], 204);
+
+        } catch (ModelNotFoundException $e) {
+        return response()->json(['error' => 'Пользователь не найден.'], 404);
+    }
     }
 }

@@ -121,7 +121,8 @@ class BookController extends Controller
      *         ),
      *     ),
      *     @OA\Response(response=400, description="Неверные данные запроса"),
-     * @OA\Response(response=422, description="Ошибка валидации")
+     * @OA\Response(response=422, description="Ошибка валидации"),
+     * @OA\Response(response=404, description="Книга не найдена")
      * )
      */
     public function update(BookRequest $request, $id) {
