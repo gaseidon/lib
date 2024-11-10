@@ -12,9 +12,3 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 
-
-// Route::console(function () {
-//     // Выполнение задачи с задержкой
-//     SendReturnReminderJob::dispatch();
-//     Log::info('Запланирована задача для отправки напоминания о возврате книги.');
-// });
